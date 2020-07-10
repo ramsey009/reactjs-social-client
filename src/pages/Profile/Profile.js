@@ -150,7 +150,7 @@ const Profile = ({
     if (error || posts_loading || !hasMore) return;
     if (
       document.documentElement.scrollHeight -
-        document.documentElement.scrollTop ===
+      document.documentElement.scrollTop ===
       document.documentElement.clientHeight
     ) {
       // setLoading(true)
@@ -166,94 +166,88 @@ const Profile = ({
   console.log("offset --------->", offset);
 
   const classes = useStyles();
+  const profile_image = "http://localhost:8000" + profile.avatar
+
 
   return profile_loading || profile == null ? (
     <Backdrop open={true}>
       <CircularProgress color="inherit" />
     </Backdrop>
   ) : (
-    <div>
-      <Grid container>
-        <Hidden smDown>
-          <Grid item xs={12} sm={12} md={4}></Grid>
-        </Hidden>
+      <div>
+        <Grid container>
+          <Hidden smDown>
+            <Grid item xs={12} sm={12} md={4}></Grid>
+          </Hidden>
 
-        <Grid item xs={12} sm={12} md={4}>
-          <Grid container style={{ marginTop: "100px" }}>
-            <Grid item xs={12} sm={12} md={12}>
-              <div className={classes.profilepicmobilediv}>
-                <img
-                  style={{ border: "5px solid silver" }}
-                  className={classes.profilepicmobile}
-                  src="https://i.pinimg.com/236x/3f/d0/d5/3fd0d516192d8a342ea8fd1cb9a63a01--street-style-fashion-fashion-looks.jpg"
-                ></img>{" "}
-              </div>
+          <Grid item xs={12} sm={12} md={4}>
+            <Grid container style={{ marginTop: "100px" }}>
+              <Grid item xs={12} sm={12} md={12}>
+                <div className={classes.profilepicmobilediv}>
+                  <img
+                    style={{ border: "5px solid silver" }}
+                    className={classes.profilepicmobile}
+                    src={profile_image}
+                  ></img>{" "}
+                </div>
 
-              <div className={classes.namemobilediv}>
-                <Typography variant="h6" gutterBottom>
-                  {profile.fullname}
-                </Typography>
-              </div>
+                <div className={classes.namemobilediv}>
+                  <Typography variant="h6" gutterBottom>
+                    {profile.fullname}
+                  </Typography>
+                </div>
 
-              <div>
-                <Typography
-                  className={classes.aboutmobiletypo}
-                  variant="body1"
-                  align="center"
-                  gutterBottom
-                >
-                  {profile.about}
-                </Typography>
-              </div>
-
-              <div style={{ textAlign: "center", paddingBottom: "5px" }}>
-                <Button size="small" onClick={handleClickOpen}>
-                  Know More
-                </Button>
-                <Dialog
-                  onClose={handleClose}
-                  aria-labelledby="customized-dialog-title"
-                  open={open}
-                >
-                  <DialogTitle
-                    id="customized-dialog-title"
-                    onClose={handleClose}
+                <div>
+                  <Typography
+                    className={classes.aboutmobiletypo}
+                    variant="body1"
+                    align="center"
+                    gutterBottom
                   >
-                    Modal title
+                    {profile.about}
+                  </Typography>
+                </div>
+
+                <div style={{ textAlign: "center", paddingBottom: "5px" }}>
+                  <Button size="small" onClick={handleClickOpen}>
+                    Know More
+                </Button>
+                  <Dialog
+                    onClose={handleClose}
+                    aria-labelledby="customized-dialog-title"
+                    open={open}
+                  >
+                    <DialogTitle
+                      id="customized-dialog-title"
+                      onClose={handleClose}
+                    >
+                      Profile Details
                   </DialogTitle>
-                  <DialogContent dividers>
-                    <Typography gutterBottom>
-                      Cras mattis consectetur purus sit amet fermentum. Cras
-                      justo odio, dapibus ac facilisis in, egestas eget quam.
-                      Morbi leo risus, porta ac consectetur ac, vestibulum at
-                      eros.
-                    </Typography>
-                    <Typography gutterBottom>
-                      Praesent commodo cursus magna, vel scelerisque nisl
-                      consectetur et. Vivamus sagittis lacus vel augue laoreet
-                      rutrum faucibus dolor auctor.
-                    </Typography>
-                    <Typography gutterBottom>
-                      Aenean lacinia bibendum nulla sed consectetur. Praesent
-                      commodo cursus magna, vel scelerisque nisl consectetur et.
-                      Donec sed odio dui. Donec ullamcorper nulla non metus
-                      auctor fringilla.
-                    </Typography>
-                  </DialogContent>
-                  <DialogActions>
-                    <Button autoFocus onClick={handleClose} color="primary">
-                      Save changes
-                    </Button>
-                  </DialogActions>
-                </Dialog>
-              </div>
+                    <DialogContent dividers>
+                      <Typography gutterBottom>
+                        <strong>About<br></br></strong>
+                        <i>{profile.about}</i>
+                      </Typography>
+                      <Typography gutterBottom>
+                        <strong>Date Of Birth(DOB)<br></br></strong>
+                        <i>{profile.dob}</i>
+                      </Typography>
+                      <Typography gutterBottom>
+                        <strong>Place<br></br></strong>
+                        <i>{profile.place}</i>
+                      </Typography>
 
-              <Divider />
+                    </DialogContent>
 
-              <div>
-                <Grid container alignItems="center">
-                  <Grid item md={4} xs={4}>
-                    
+                  </Dialog>
+                </div>
+
+                <Divider />
+
+                <div>
+                  <Grid container alignItems="center">
+                    <Grid item md={4} xs={4}>
+
                       <div>
                         <Typography
                           align="center"
@@ -266,75 +260,75 @@ const Profile = ({
                           posts
                         </Typography>
                       </div>
-                  </Grid>
+                    </Grid>
 
-                  <Grid item md={4} xs={4}>
-                    <Link
-                      to={`/followers/${profile.username}`}
-                      style={{ textDecoration: "None" }}
-                    >
-                      <Typography 
-                      align="center" 
-                      variant="subtitle1"
-                      style={{ fontWeight: "bold", color: "black" }}
+                    <Grid item md={4} xs={4}>
+                      <Link
+                        to={`/followers/${profile.username}`}
+                        style={{ textDecoration: "None" }}
                       >
-                        200
+                        <Typography
+                          align="center"
+                          variant="subtitle1"
+                          style={{ fontWeight: "bold", color: "black" }}
+                        >
+                          200
                       </Typography>
-                      <Typography align="center" style={{ color: "gray" }}>
-                        followers
+                        <Typography align="center" style={{ color: "gray" }}>
+                          followers
                       </Typography>
-                    </Link>
-                  </Grid>
+                      </Link>
+                    </Grid>
 
-                  <Grid item md={4} xs={4}>
-                    <Link
-                      to={`/followings/${profile.username}`}
-                      style={{ textDecoration: "None" }}
-                    >
-                      <Typography
-                        align="center"
-                        variant="subtitle1"
-                        style={{ fontWeight: "bold", color: "black" }}
+                    <Grid item md={4} xs={4}>
+                      <Link
+                        to={`/followings/${profile.username}`}
+                        style={{ textDecoration: "None" }}
                       >
-                        24
+                        <Typography
+                          align="center"
+                          variant="subtitle1"
+                          style={{ fontWeight: "bold", color: "black" }}
+                        >
+                          24
                       </Typography>
-                      <Typography align="center" style={{ color: "gray" }}>
-                        followings
+                        <Typography align="center" style={{ color: "gray" }}>
+                          followings
                       </Typography>
-                    </Link>
+                      </Link>
+                    </Grid>
                   </Grid>
-                </Grid>
-              </div>
-              <Divider style={{ marginBottom: "10px" }} />
-
-              {posts.map((post) => (
-                <TimelinePostCard post={post} auth={auth} />
-              ))}
-              {error && <div>{error} </div>}
-              {!hasMore ? (
-                <NoMoreTimelinePost />
-              ) : (
-                <div
-                  style={{
-                    textAlign: "center",
-                    marginTop: "30px",
-                    marginBottom: "30px",
-                  }}
-                  className={classes.progress}
-                >
-                  <CircularProgress />
                 </div>
-              )}
-            </Grid>
-          </Grid>
-        </Grid>
+                <Divider style={{ marginBottom: "10px" }} />
 
-        <Hidden smDown>
-          <Grid item xs={12} sm={12} md={4}></Grid>
-        </Hidden>
-      </Grid>
-    </div>
-  );
+                {posts.map((post) => (
+                  <TimelinePostCard post={post} auth={auth} />
+                ))}
+                {error && <div>{error} </div>}
+                {!hasMore ? (
+                  <NoMoreTimelinePost />
+                ) : (
+                    <div
+                      style={{
+                        textAlign: "center",
+                        marginTop: "30px",
+                        marginBottom: "30px",
+                      }}
+                      className={classes.progress}
+                    >
+                      <CircularProgress />
+                    </div>
+                  )}
+              </Grid>
+            </Grid>
+          </Grid >
+
+          <Hidden smDown>
+            <Grid item xs={12} sm={12} md={4}></Grid>
+          </Hidden>
+        </Grid >
+      </div >
+    );
 };
 
 Profile.propTypes = {

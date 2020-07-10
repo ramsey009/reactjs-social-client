@@ -27,14 +27,14 @@ const TimelinePostCard = ({ post, auth }) => {
   const printyyt = () => {
     console.log("hua hai bhai");
   };
-
+  const timeline_post_image = "http://localhost:3000" + post.picture
   return (
     <Card className={classes.root}>
       <Link to={`/post/${post.id}`} style={{ textDecoration: "None" }}>
         <CardActionArea onClick={printyyt}>
           <CardMedia
             className={classes.media}
-            image="https://www.history.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cg_faces:center%2Cq_auto:good%2Cw_768/MTY4OTUyNzU5MjY4MTU3MjUx/secret-societies-gettyimages-173990102.jpg"
+            image={timeline_post_image}
             title="Contemplative Reptile"
           />
           <CardContent>
@@ -63,12 +63,12 @@ const TimelinePostCard = ({ post, auth }) => {
         <Typography variant="subtitle2">
           {post.bookmarks_count} bookmarks
         </Typography>
-        { post.username == auth.couser.username ? (<div style={{ textAlign: "right" }}>
+        {post.username == auth.couser.username ? (<div style={{ textAlign: "right" }}>
           <IconButton>
             <DeleteIcon />
           </IconButton>
-        </div>):(<div></div>)}
-        
+        </div>) : (<div></div>)}
+
       </CardActions>
     </Card>
   );
