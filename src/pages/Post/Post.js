@@ -165,10 +165,6 @@ const Post = ({
 
   const post_id = match.params.id;
 
-  // elem.onscroll = () =>{
-  //   console.log("kam kar rha hai bhai")
-  // }
-
   //comment expand
   const [expanded, setExpanded] = React.useState(true);
   const handleExpandClick = () => {
@@ -240,7 +236,7 @@ const Post = ({
   };
 
   let picture_link = "";
-  if (post.picture != "") {
+  if (post.picture != null) {
     picture_link = "http://127.0.0.1:8000" + post.picture;
   }
 
