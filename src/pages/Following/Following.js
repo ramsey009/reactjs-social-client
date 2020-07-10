@@ -59,7 +59,7 @@ const Following = ({
         </Hidden>
 
         <Grid item xs={12} sm={12} md={4}>
-          <div style={{ marginTop: "10px", marginBottom: "40px" }}>
+          <div style={{ marginTop: "100px", marginBottom: "40px" }}>
             {followings.map((following) => (
               <div style={{marginBottom:"10px"}}>
                 <FollowingCard
@@ -71,6 +71,7 @@ const Following = ({
             {error && <div>{error} </div>}
             {!hasMore ? <NoMoreFollowings /> : <Loader />}
           </div>
+        
         </Grid>
 
         <Hidden smDown>

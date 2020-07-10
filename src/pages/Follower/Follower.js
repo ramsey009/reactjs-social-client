@@ -67,12 +67,14 @@ const Follower = ({
           <Grid item md={3}></Grid>
         </Hidden>
 
-        <Grid item xs={12} sm={12} md={4}>
-            {followers.map((follower) => (
+        <Grid item xs={12} sm={12} md={4} >
+          <div style = {{paddingTop: "70px"}}>
+          {followers.map((follower) => (
               <FollowerCard key={follower.follower_id} follower={follower} />
             ))}
             {error && <div>{error} </div>}
             {!hasMore ? <NoMoreFollowings /> : <Loader />}
+          </div>
         </Grid>
 
         <Hidden smDown>
