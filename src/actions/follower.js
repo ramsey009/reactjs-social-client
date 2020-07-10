@@ -8,6 +8,8 @@ import {
 
 //get people
 export const getFollowers = (username, limit, offset ) => async (dispatch) => {
+
+  console.log("follower reaquerst is coming bro -------------------->>")
   const res = await axios.get(`/core/followers/${username}/?limit=${limit}&offset=${offset}`);
   console.log(res)
 
